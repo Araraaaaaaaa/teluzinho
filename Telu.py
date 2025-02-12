@@ -7,9 +7,9 @@ pygame.init() #___________inicialização do programa
 tipográfico, mouse_x, mouse_y, screen, clock, tempo= pygame.font.Font(None, 24), 0, 0, pygame.display.set_mode((800, 400)), pygame.time.Clock() , 400
 t_exto, te_xto, tex_to, perso_mainha= tipográfico.render(f"Deseja iniciar com qual personagem? (< ou >)", True, (0,0,0)), tipográfico.render(f"Com qual nível de dificuldade deseja jogar? (v ou ^)", True, (0,0,0)), tipográfico.render(f"Fácil                   Difícil", True, (0,0,0)), tipográfico.render(f"Mainha:", True, (0,0,0))
 p_uxada1, p_uxada2, pu_xada, pux_ada, perso_filho, puxa_da = tipográfico.render(f"Ariel, o que será de você quando eu não estiver", True, (0,0,0)), tipográfico.render(f"mais na Terra para achar os seus pertences?", True, (0,0,0)), tipográfico.render(f"Vá novamente procurar essa geringonça, e olhe lá....", True, (0,0,0)), tipográfico.render(f"se eu for lá e achar, já sabe. Você tem o tempo de {tempo}", True, (0,0,0)), tipográfico.render(f"Ariel:", True, (0,0,0)), tipográfico.render(f"Relaxa, coroa, eu vou achar sim.", True, (0,0,0))
-chao , fora, quintal, relogio= pygame.Surface([800, 200]), pygame.Surface([100, 200]), pygame.Surface([200, 100]), pygame.Surface([300, 100])
+chao, fora, quintal, relogio, mouse= pygame.Surface([800, 200]), pygame.Surface([100, 200]), pygame.Surface([200, 100]), pygame.Surface([300, 100]), pygame.surface([10,10])
 
-#_____________________________________Imagens, -rects- e conversões
+#_____________________________________Imagens e conversões
 parada_img, parado_img, inaAndando_img, inoAndando_img = pygame.image.load('imagens/meninaParada.png').convert_alpha(), pygame.image.load('imagens/meninoParado.png').convert_alpha(), pygame.image.load('imagens/meninaAndando.png').convert_alpha(), pygame.image.load('imagens/meninoAndando.png').convert_alpha()
 parada_img, parado_img, inaAndando_img, inoAndando_img = pygame.transform.scale(parada_img, (150,200)), pygame.transform.scale(parado_img, (120,190)), pygame.transform.scale(inaAndando_img, (200,200)), pygame.transform.scale(inoAndando_img, (160, 160))
 sofa_img, planta_img, gatoMimindo_img, portaFechada_img, candelabro_img, gatoAtento_img, portAberta_img, mainha_img = pygame.image.load('imagens/sofá.png').convert_alpha(),pygame.image.load('imagens/planta.png').convert_alpha(),pygame.image.load('imagens/gatoDormindo.png').convert_alpha(), pygame.image.load('imagens/portaFechada.png').convert_alpha(), pygame.image.load('imagens/candelabro.png').convert_alpha(), pygame.image.load('imagens/gatoAtento.png').convert_alpha(), pygame.image.load('imagens/portaAberta.png').convert_alpha(), pygame.image.load('imagens/mainha.png').convert_alpha()
@@ -26,6 +26,11 @@ geladeira_img = geladeiraFechada_img
 cortina_img = cortinaAberta_img
 fogao_img = fogaoFechado_img
 roupa_img = roupaFechada_img
+#__________________________________________Rects
+rect_mouse = mouse.get_rect()
+rect_gato, rect_geladeira, rect_fogao = gato_img.get_rect(), geladeira_img.get_rect(), fogao_img.get_rect() #interagivel móveis
+rect_chave, rect_roupa, rect_celular, rect_guarda = chave_img.get_rect(), roupa_img.get_rect(), celular_img.get_rect(), guardaChuva_img.get_rect() #interagivel objeto
+rect_pia , rect_janela, rect_planta, rect_sofa= pia_img.get_rect(), janela_img.get_rect(), planta_img.get_rect(), sofa_img.get_rect()#interagivel imóvel
 #_______________________________________Pintura
 chao.fill((240,230,140)) 
 fora.fill((255,255,255))
