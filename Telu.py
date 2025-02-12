@@ -7,7 +7,7 @@ pygame.init() #___________inicialização do programa
 tipográfico, mouse_x, mouse_y, screen, clock, tempo= pygame.font.Font(None, 24), 0, 0, pygame.display.set_mode((800, 400)), pygame.time.Clock() , 400
 t_exto, te_xto, tex_to, perso_mainha= tipográfico.render(f"Deseja iniciar com qual personagem? (< ou >)", True, (0,0,0)), tipográfico.render(f"Com qual nível de dificuldade deseja jogar? (v ou ^)", True, (0,0,0)), tipográfico.render(f"Fácil                   Difícil", True, (0,0,0)), tipográfico.render(f"Mainha:", True, (0,0,0))
 p_uxada1, p_uxada2, pu_xada, pux_ada, perso_filho, puxa_da = tipográfico.render(f"Ariel, o que será de você quando eu não estiver", True, (0,0,0)), tipográfico.render(f"mais na Terra para achar os seus pertences?", True, (0,0,0)), tipográfico.render(f"Vá novamente procurar essa geringonça, e olhe lá....", True, (0,0,0)), tipográfico.render(f"se eu for lá e achar, já sabe. Você tem o tempo de {tempo}", True, (0,0,0)), tipográfico.render(f"Ariel:", True, (0,0,0)), tipográfico.render(f"Relaxa, coroa, eu vou achar sim.", True, (0,0,0))
-chao, fora, quintal, relogio, mouse= pygame.Surface([800, 200]), pygame.Surface([100, 200]), pygame.Surface([200, 100]), pygame.Surface([300, 100]), pygame.surface([10,10])
+chao, fora, quintal, relogio= pygame.Surface([800, 200]), pygame.Surface([100, 200]), pygame.Surface([200, 100]), pygame.Surface([300, 100])
 
 #_____________________________________Imagens e conversões
 parada_img, parado_img, inaAndando_img, inoAndando_img = pygame.image.load('imagens/meninaParada.png').convert_alpha(), pygame.image.load('imagens/meninoParado.png').convert_alpha(), pygame.image.load('imagens/meninaAndando.png').convert_alpha(), pygame.image.load('imagens/meninoAndando.png').convert_alpha()
@@ -15,9 +15,11 @@ parada_img, parado_img, inaAndando_img, inoAndando_img = pygame.transform.scale(
 sofa_img, planta_img, gatoMimindo_img, portaFechada_img, candelabro_img, gatoAtento_img, portAberta_img, mainha_img = pygame.image.load('imagens/sofá.png').convert_alpha(),pygame.image.load('imagens/planta.png').convert_alpha(),pygame.image.load('imagens/gatoDormindo.png').convert_alpha(), pygame.image.load('imagens/portaFechada.png').convert_alpha(), pygame.image.load('imagens/candelabro.png').convert_alpha(), pygame.image.load('imagens/gatoAtento.png').convert_alpha(), pygame.image.load('imagens/portaAberta.png').convert_alpha(), pygame.image.load('imagens/mainha.png').convert_alpha()
 sofa_img, planta_img, gatoMimindo_img, portaFechada_img, candelabro_img, gatoAtento_img, portAberta_img, mainha_img = pygame.transform.scale(sofa_img, (400, 200)), pygame.transform.scale(planta_img, (150, 200)), pygame.transform.scale(gatoMimindo_img, (90, 50)), pygame.transform.scale(portaFechada_img, (300, 300)), pygame.transform.scale(candelabro_img, (180, 150)), pygame.transform.scale(gatoAtento_img, (180, 150)), pygame.transform.scale(portAberta_img, (180,150)), pygame.transform.scale(mainha_img, (120,140))
 pia_img, geladeiraFechada_img, geladeiraAberta_img, fogaoFechado_img, fogaoAberto_img, janela_img, cortinaAberta_img, cortinaFechada_img = pygame.image.load('imagens/pia.png').convert_alpha(), pygame.image.load('imagens/geladeiraFechada.png').convert_alpha(), pygame.image.load('imagens/geladeiraAberta.png').convert_alpha(), pygame.image.load('imagens/fogãoFechado.png').convert_alpha(), pygame.image.load('imagens/fogãoAberto.png').convert_alpha(), pygame.image.load('imagens/janela.png').convert_alpha(), pygame.image.load('imagens/cortinaAberta.png').convert_alpha(), pygame.image.load('imagens/cortinaFechada.png').convert_alpha()
-pia_img, geladeiraFechada_img, geladeiraAberta_img, fogaoFechado_img, fogaoAberto_img, janela_img, cortinaAberta_img, cortinaFechada_img = pygame.transform.scale(pia_img, (280,250)), pygame.transform.scale(geladeiraFechada_img, (180,350)), pygame.transform.scale(geladeiraAberta_img, (180,350)), pygame.transform.scale(fogaoFechado_img, (280,250)), pygame.transform.scale(fogaoAberto_img, (280,250)), pygame.transform.scale(janela_img, (180,350)), pygame.transform.scale(cortinaAberta_img, (180,350)), pygame.transform.scale(cortinaFechada_img, (180,150))
+pia_img, geladeiraFechada_img, geladeiraAberta_img, fogaoFechado_img, fogaoAberto_img, janela_img, cortinaAberta_img, cortinaFechada_img = pygame.transform.scale(pia_img, (280,250)), pygame.transform.scale(geladeiraFechada_img, (280,310)), pygame.transform.scale(geladeiraAberta_img, (280,310)), pygame.transform.scale(fogaoFechado_img, (240,200)), pygame.transform.scale(fogaoAberto_img, (240,200)), pygame.transform.scale(janela_img, (350,180)), pygame.transform.scale(cortinaAberta_img, (380,180)), pygame.transform.scale(cortinaFechada_img, (350,180))
 chave_img, roupaAberta_img, roupaFechada_img, celular_img, ovos_img, guardaChuva_img = pygame.image.load('imagens/chave.png').convert_alpha(), pygame.image.load('imagens/camisaAberta.png').convert_alpha(), pygame.image.load('imagens/camisaDobrada.png').convert_alpha(), pygame.image.load('imagens/celular.png').convert_alpha(),pygame.image.load('imagens/ovos.png').convert_alpha(), pygame.image.load('imagens/guardaChuva.png').convert_alpha()
 chave_img, roupaAberta_img, roupaFechada_img, celular_img, ovos_img, guardaChuva_img = pygame.transform.scale(chave_img,(50,25)), pygame.transform.scale(roupaAberta_img, (125,180)), pygame.transform.scale(roupaFechada_img,(125,180)), pygame.transform.scale(celular_img, (70,100)), pygame.transform.scale(ovos_img, (150,80)), pygame.transform.scale(guardaChuva_img, (60,150))
+exclamacao_img, interrogacao_img, chinelo_img, mao_img = pygame.image.load('imagens/exclamação.png.png').convert_alpha(), pygame.image.load('imagens/interrogação.png').convert_alpha(), pygame.image.load('imagens/chinela.png.png').convert_alpha(), pygame.image.load('imagens/mão.png.png').convert_alpha()
+exclamacao_img, interrogacao_img, chinelo_img, mao_img = pygame.transform.scale(exclamacao_img, (100,100)), pygame.transform.scale(interrogacao_img, (100,100)), pygame.transform.scale(chinelo_img, (200,200)), pygame.transform.scale(mao_img, (100,100))
 #________________________________________Estados iniciais
 mainha_img = pygame.transform.flip(mainha_img, True, False)
 gato_img = gatoMimindo_img
@@ -27,7 +29,7 @@ cortina_img = cortinaAberta_img
 fogao_img = fogaoFechado_img
 roupa_img = roupaFechada_img
 #__________________________________________Rects
-rect_mouse = mouse.get_rect()
+rect_perso = mao_img.get_rect()
 rect_gato, rect_geladeira, rect_fogao = gato_img.get_rect(), geladeira_img.get_rect(), fogao_img.get_rect() #interagivel móveis
 rect_chave, rect_roupa, rect_celular, rect_guarda = chave_img.get_rect(), roupa_img.get_rect(), celular_img.get_rect(), guardaChuva_img.get_rect() #interagivel objeto
 rect_pia , rect_janela, rect_planta, rect_sofa= pia_img.get_rect(), janela_img.get_rect(), planta_img.get_rect(), sofa_img.get_rect()#interagivel imóvel
@@ -35,6 +37,23 @@ rect_pia , rect_janela, rect_planta, rect_sofa= pia_img.get_rect(), janela_img.g
 chao.fill((240,230,140)) 
 fora.fill((255,255,255))
 quintal.fill((255,255,255))
+def cozinha():
+    if local <= 3 : #___________local easy
+        if local == 2:#_cozinha - Dentro da pia
+            screen.blit(perdido, (270,150))
+    elif local >= 4 :#___________local hard
+        if local == 5:#_cozinha - dentro da geladeira
+            if geladeira_img == geladeiraAberta_img:
+                screen.blit(perdido, (550,100))
+        elif local == 6:#_cozinha - dentro do fogão
+            if fogao_img == fogaoAberto_img:
+                screen.blit(perdido, (60,280))
+    screen.blit(geladeira_img, 500,35)
+    screen.blit(pia_img,(270,150)) 
+    screen.blit(janela_img,(250,60))
+    screen.blit(cortina_img,(243,30))
+    screen.blit(fogao_img,(40,110))
+
 def sala():#___________________________________________Ambientes
     print(f"imagem: {perdido}, local:{local}, fase:{fase},")
     b = 0
@@ -118,27 +137,18 @@ def andarilho(veloci, ambiene, a):
                 screen.blit(pygame.transform.flip(personagem_andando, True, False), (veloci, 151))
     a += 1
     return veloci, ambiene, a
+def pergunta(velocidade):
+    joca = pygame.key.get_pressed()
+    if joca[pygame.K_UP]:
+        screen.blit(exclamacao_img, (rect_perdido))
+        screen.blit(exclamacao_img, (velocidade, 10))
 
-def cozinha():
-    '''if local <= 3 : #___________local easy
-        if local == 2:#_cozinha - Dentro da pia
-            screen.blit(perdido, ())
-    elif local >= 4 :#___________local hard
-        if local == 5:#_cozinha - dentro da geladeira
-            screen.blit(perdido, ())
-        elif local == 6:#_cozinha - dentro do fogão
-            screen.blit(perdido, ())'''
-    screen.blit(geladeira_img,(150,200))
-    screen.blit(pia_img,(150,200)) 
-    screen.blit(janela_img,(150,200))
-    screen.blit(cortina_img,(150,200))
-    screen.blit(fogao_img,(150,200))
 
 '''Momento= passagem do tempo em uma cena | velocidade= movimento do personagem na tela  | tempo= contagem regressiva para o estresse total de Mainha
 estado: big-bang = 0, prelúdio = 1, procura = 2, fim bom = 3, fim triste = -3 #___________Variáveis
 fase: fácil = 1, difícil = 3      |     sentido: direita = 22, esquerda = 13
 ambiente: sala= 0, cozinha = 1    |     genero: menino = 0, menina = 1'''
-estado, fase, ambiente, genero, momento, b, a, velocidade = 0, 0, 0, 5, 0, 0, 0, 350
+estado, fase, ambiente, genero, momento, b, a, velocidade, kalooi = 0, 0, 0, 5, 0, 0, 0, 350, 0
 #local: 1= atrás da planta, 2= Dentro da pia, 3= Emcima da planta | 4= embaixo do gato, 5= dentro da geladeira, 6= dentro do fogão
 lugar = [1,2,3,4,5,6]
 #objetos: 0= guarda-chuva, 1= roupa do if, 2= celular, 3= chave
@@ -152,7 +162,10 @@ while True:
             mouse_x = event.pos[0]
             mouse_y = event.pos[1]
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            momento += 1
+            if estado == 1:
+               momento += 1
+            if estado == 2:
+                kalooi += 1
     screen.fill((216,191,216)) #__________Repintando a tela 
 
 
@@ -169,17 +182,25 @@ while True:
             personagem_parado, personagem_andando = parado_img, inoAndando_img
         elif genero == 1: #menina
             personagem_parado, personagem_andando = parada_img, inaAndando_img
+        screen.blit(mao_img, (mouse_x - 50, mouse_y - 40))
     elif estado == -1:
         screen.blit(te_xto, (200,120))#_________Escolha da dificuldade
         screen.blit(tex_to, (320,190))
         escolha = pygame.key.get_pressed()
         if escolha[pygame.K_UP]:#_____________Difícil
             fase, estado, local, perdido = 3, 1, lugar[random.randint(0,5)], objetos[random.randint(0,3)]
+            rect_perdido = perdido.get_rect()
         elif escolha[pygame.K_DOWN]:#___________fácil
             fase, estado, local, perdido = 1, 1, lugar[random.randint(0,2)], guardaChuva_img
+            rect_perdido = perdido.get_rect()
+        screen.blit(mao_img, (mouse_x - 50, mouse_y - 40))
+    elif estado == -2:
+        print("hello word")
+        #________________________________Tutorial
     #____________________________________________________________Jogo
     else:
         screen.blit(chao, (0,250))
+
         if estado == 1:#__________________Puxada de orelha
             sala()
             if momento == 1:#_______________________Trocas de falas
@@ -213,20 +234,12 @@ while True:
                 if ambiente == 1:
                     cozinha()
                 velocidade, ambiente, a = andarilho(velocidade, ambiente, a)#função do movimento controlado
-                #_____________________________Toque dos objetos
-
+                pergunta(velocidade)
             elif estado == 3:
                 print("Parabens")
             elif estado == -3:
                 print("Castigo")
 
-        if fase == 3 and estado > 1:#______Separação de fase
-            if estado == 2:
-                print("investigar")
-            elif estado == 3:
-                print("Parabens")
-            elif estado == -3:
-                print("Castigo")
     
     pygame.display.flip()
     clock.tick(15)  # taxa de quadros por segundo (FPS)
