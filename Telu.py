@@ -37,25 +37,65 @@ rect_pia , rect_janela, rect_planta, rect_sofa= pia_img.get_rect(), janela_img.g
 chao.fill((240,230,140)) 
 fora.fill((255,255,255))
 quintal.fill((255,255,255))
-def cozinha():
+def cozinha(estado):
     print(f"imagem: {perdido}, local:{local}, fase:{fase}, velocidade{velocidade}")
+    joca = pygame.key.get_pressed()
     if local <= 3 : #___________local easy
         if local == 2:#_cozinha - Dentro da pia
             screen.blit(perdido, (270,150))
+            if velocidade >= 260 and velocidade <= 460:
+                if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                    screen.blit(exclamacao_img, (velocidade+10, 60))
+                elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                    estado = 3
+            elif velocidade >= 490 and velocidade <= 680:#___terceira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("terceira área")
+            elif velocidade >= -40 and velocidade <= 180:#___primeira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("primeira área")
     elif local >= 4 :#___________local hard
         if local == 5:#_cozinha - dentro da geladeira
             if geladeira_img == geladeiraAberta_img:
                 screen.blit(perdido, (550,100))
+                if velocidade >= 490 and velocidade <= 680:
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(exclamacao_img, (velocidade+10, 60))
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                        estado = 3
+                elif velocidade >= 260 and velocidade <= 460:#___segunda área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("segunda área")
+                elif velocidade >= -40 and velocidade <= 180:#___primeira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("primeira área")
         elif local == 6:#_cozinha - dentro do fogão
             if fogao_img == fogaoAberto_img:
                 screen.blit(perdido, (60,280))
+                if velocidade >= -40 and velocidade <= 180:
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(exclamacao_img, (velocidade+10, 60))
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                        estado = 3
+                elif velocidade >= 260 and velocidade <= 460:#___segunda área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("segunda área")
+                elif velocidade >= 490 and velocidade <= 680:#___terceira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("terceira área")
     screen.blit(geladeira_img, (500,35))
     screen.blit(pia_img,(270,150)) 
     screen.blit(janela_img,(250,60))
     screen.blit(cortina_img,(243,30))
     screen.blit(fogao_img,(40,110))
-
-def sala():#___________________________________________Ambientes
+    return estado
+def sala(estado):#___________________________________________Ambientes
     print(f"imagem: {perdido}, local:{local}, fase:{fase}, velocidade{velocidade}")
     b, joca = 0, pygame.key.get_pressed()
     if estado > 1:
@@ -64,21 +104,56 @@ def sala():#___________________________________________Ambientes
             if local == 1:#___sala - atrás da planta
                 screen.blit(perdido, (590,120))
                 if velocidade >= 510 and velocidade <= 720:
-                    if joca[pygame.K_UP]:
-                        screen.blit(exclamacao_img, (velocidade, 10))
-                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
-                        estado =
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(exclamacao_img, (velocidade+10, 60))
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                        estado = 3
+                elif velocidade >= 270 and velocidade <= 420:#___segunda área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("segunda área")
+                elif velocidade >= -40 and velocidade <= 260:#___primeira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("primeira área")
             elif local == 3:#_sala - encostado no sofá
                 screen.blit(perdido, (260, 140))
+                if velocidade >= -40 and velocidade <= 260:
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(exclamacao_img, (velocidade+10, 60))
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                        estado = 3
+                elif velocidade >= 270 and velocidade <= 420:#___segunda área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("segunda área")
+                elif velocidade >= 510 and velocidade <= 720:#___terceira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("terceira área")
         elif local >= 4 :#_________________________local hard
             if local == 4:#___sala - embaixo do gato
                 screen.blit(rolado, (360,200))
                 b = 24
+                if velocidade >= 270 and velocidade <= 420:
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(exclamacao_img, (velocidade+10, 60))
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                        estado = 3
+                elif velocidade >= -40 and velocidade <= 260:#___primeira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("primeira área")
+                elif velocidade >= 510 and velocidade <= 720:#___terceira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                        print("terceira área")
     screen.blit(sofa_img,(270,130))
     screen.blit(planta_img,(600, 100))
     screen.blit(gato_img,(360, 198 - b))
     screen.blit(porta_img,(25, 15))
     screen.blit(candelabro_img,(320, -35))
+    return estado
 def movimentoDeMainha(b):
     b += 1
     if b % 3 == 0:#_____________Movimento de mainha
@@ -143,11 +218,6 @@ def andarilho(veloci, ambiene, a):
                 screen.blit(pygame.transform.flip(personagem_andando, True, False), (veloci, 151))
     a += 1
     return veloci, ambiene, a
-def pergunta(velocidade):
-    joca = pygame.key.get_pressed()
-    if joca[pygame.K_UP]:
-        screen.blit(exclamacao_img, (velocidade, 10))
-
 
 '''Momento= passagem do tempo em uma cena | velocidade= movimento do personagem na tela  | tempo= contagem regressiva para o estresse total de Mainha
 estado: big-bang = 0, prelúdio = 1, procura = 2, fim bom = 3, fim triste = -3 #___________Variáveis
@@ -207,7 +277,7 @@ while True:
         screen.blit(chao, (0,250))
 
         if estado == 1:#__________________Puxada de orelha
-            sala()
+            estado = sala(estado)
             if momento == 1:#_______________________Trocas de falas
                 b = movimentoDeMainha(b)
                 screen.blit(personagem_parado, (350,151))
@@ -235,11 +305,10 @@ while True:
         if fase == 1 and estado > 1:#______Separação de fase
             if estado == 2:
                 if ambiente == 0:
-                    sala()
+                    estado = sala(estado)
                 if ambiente == 1:
-                    cozinha()
+                    estado = cozinha(estado)
                 velocidade, ambiente, a = andarilho(velocidade, ambiente, a)#função do movimento controlado
-                pergunta(velocidade)
             elif estado == 3:
                 print("Parabens")
             elif estado == -3:
