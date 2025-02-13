@@ -38,6 +38,7 @@ chao.fill((240,230,140))
 fora.fill((255,255,255))
 quintal.fill((255,255,255))
 def cozinha():
+    print(f"imagem: {perdido}, local:{local}, fase:{fase}, velocidade{velocidade}")
     if local <= 3 : #___________local easy
         if local == 2:#_cozinha - Dentro da pia
             screen.blit(perdido, (270,150))
@@ -48,20 +49,25 @@ def cozinha():
         elif local == 6:#_cozinha - dentro do fogão
             if fogao_img == fogaoAberto_img:
                 screen.blit(perdido, (60,280))
-    screen.blit(geladeira_img, 500,35)
+    screen.blit(geladeira_img, (500,35))
     screen.blit(pia_img,(270,150)) 
     screen.blit(janela_img,(250,60))
     screen.blit(cortina_img,(243,30))
     screen.blit(fogao_img,(40,110))
 
 def sala():#___________________________________________Ambientes
-    print(f"imagem: {perdido}, local:{local}, fase:{fase},")
-    b = 0
+    print(f"imagem: {perdido}, local:{local}, fase:{fase}, velocidade{velocidade}")
+    b, joca = 0, pygame.key.get_pressed()
     if estado > 1:
         rolado = pygame.transform.flip(perdido, False, True)
         if local <= 3 : #_________________________local easy
             if local == 1:#___sala - atrás da planta
                 screen.blit(perdido, (590,120))
+                if velocidade >= 510 and velocidade <= 720:
+                    if joca[pygame.K_UP]:
+                        screen.blit(exclamacao_img, (velocidade, 10))
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                        estado =
             elif local == 3:#_sala - encostado no sofá
                 screen.blit(perdido, (260, 140))
         elif local >= 4 :#_________________________local hard
@@ -140,7 +146,6 @@ def andarilho(veloci, ambiene, a):
 def pergunta(velocidade):
     joca = pygame.key.get_pressed()
     if joca[pygame.K_UP]:
-        screen.blit(exclamacao_img, (rect_perdido))
         screen.blit(exclamacao_img, (velocidade, 10))
 
 
