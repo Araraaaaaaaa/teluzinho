@@ -6,9 +6,11 @@ pygame.init() #___________inicialização do programa
 
 tipográfico, mouse_x, mouse_y, screen, clock, tempo= pygame.font.Font(None, 24), 0, 0, pygame.display.set_mode((800, 400)), pygame.time.Clock() , 400
 t_exto, te_xto, tex_to, perso_mainha= tipográfico.render(f"Deseja iniciar com qual personagem? (< ou >)", True, (0,0,0)), tipográfico.render(f"Com qual nível de dificuldade deseja jogar? (v ou ^)", True, (0,0,0)), tipográfico.render(f"Fácil                   Difícil", True, (0,0,0)), tipográfico.render(f"Mainha:", True, (0,0,0))
-p_uxada1, p_uxada2, pu_xada, pux_ada, perso_filho, puxa_da = tipográfico.render(f"Ariel, o que será de você quando eu não estiver", True, (0,0,0)), tipográfico.render(f"mais na Terra para achar os seus pertences?", True, (0,0,0)), tipográfico.render(f"Vá novamente procurar essa geringonça, e olhe lá....", True, (0,0,0)), tipográfico.render(f"se eu for lá e achar, já sabe. Você tem o tempo de {tempo}", True, (0,0,0)), tipográfico.render(f"Ariel:", True, (0,0,0)), tipográfico.render(f"Relaxa, coroa, eu vou achar sim.", True, (0,0,0))
+s_ala, sa_la, sal_a, sala_ = tipográfico.render(f"Já esqueci o que eu deveria procurar", True, (0,0,0)), tipográfico.render(f"Gatinho fofo", True, (0,0,0)), tipográfico.render(f"Aquela planta é mais guerreira que cacto", True, (0,0,0)), tipográfico.render(f"Devo me apressar", True, (0,0,0)),
+c_ozinha, co_zinha, coz_inha, cozi_nha = tipográfico.render(f"Aqui é ventilado", True, (0,0,0)), tipográfico.render(f"Será que está na geladeira?", True, (0,0,0)), tipográfico.render(f"Será que está no fogão?", True, (0,0,0)), tipográfico.render(f"Mainha está me esperando", True, (0,0,0))
+p_uxada1, p_uxada2, pu_xada, pux_ada, perso_filho, puxa_da = tipográfico.render(f"Ariel, o que será de você quando eu não estiver", True, (0,0,0)), tipográfico.render(f"mais na Terra para achar os seus pertences?", True, (0,0,0)), tipográfico.render(f"Vá novamente procurar essa geringonça, e olhe lá....", True, (0,0,0)), tipográfico.render(f"Se eu for lá e achar, já sabe. Você tem o tempo de {tempo}", True, (0,0,0)), tipográfico.render(f"Ariel:", True, (0,0,0)), tipográfico.render(f"Relaxa, coroa, eu vou achar sim.", True, (0,0,0))
 chao, fora, quintal, relogio= pygame.Surface([800, 200]), pygame.Surface([100, 200]), pygame.Surface([200, 100]), pygame.Surface([300, 100])
-
+fala_sala, fala_cozinha = [s_ala, sa_la, sal_a, sala_], [c_ozinha, co_zinha, coz_inha, cozi_nha]
 #_____________________________________Imagens e conversões
 parada_img, parado_img, inaAndando_img, inoAndando_img = pygame.image.load('imagens/meninaParada.png').convert_alpha(), pygame.image.load('imagens/meninoParado.png').convert_alpha(), pygame.image.load('imagens/meninaAndando.png').convert_alpha(), pygame.image.load('imagens/meninoAndando.png').convert_alpha()
 parada_img, parado_img, inaAndando_img, inoAndando_img = pygame.transform.scale(parada_img, (150,200)), pygame.transform.scale(parado_img, (120,190)), pygame.transform.scale(inaAndando_img, (200,200)), pygame.transform.scale(inoAndando_img, (160, 160))
@@ -28,6 +30,7 @@ geladeira_img = geladeiraFechada_img
 cortina_img = cortinaAberta_img
 fogao_img = fogaoFechado_img
 roupa_img = roupaFechada_img
+seletor_cozinha, seletor_sala = fala_cozinha[random.randint(0,3)], fala_sala[random.randint(0,3)]
 #__________________________________________Rects
 rect_perso = mao_img.get_rect()
 rect_gato, rect_geladeira, rect_fogao = gato_img.get_rect(), geladeira_img.get_rect(), fogao_img.get_rect() #interagivel móveis
@@ -37,102 +40,141 @@ rect_pia , rect_janela, rect_planta, rect_sofa= pia_img.get_rect(), janela_img.g
 chao.fill((240,230,140)) 
 fora.fill((255,255,255))
 quintal.fill((255,255,255))
-def cozinha(estado):
+def cozinha(estado,mentos, select):
     print(f"imagem: {perdido}, local:{local}, fase:{fase}, velocidade{velocidade}")
-    joca = pygame.key.get_pressed()
-    if local <= 3 : #___________local easy
-        if local == 2:#_cozinha - Dentro da pia
-            screen.blit(perdido, (270,150))
-            if velocidade >= 260 and velocidade <= 460:
-                if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
-                    screen.blit(exclamacao_img, (velocidade+10, 60))
-                elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
-                    estado = 3
-            elif velocidade >= 490 and velocidade <= 680:#___terceira área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
-                        screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("terceira área")
-            elif velocidade >= -40 and velocidade <= 180:#___primeira área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
-                        screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("primeira área")
-    elif local >= 4 :#___________local hard
-        if local == 5:#_cozinha - dentro da geladeira
-            if geladeira_img == geladeiraAberta_img:
-                screen.blit(perdido, (550,100))
-                if velocidade >= 490 and velocidade <= 680:
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
-                        screen.blit(exclamacao_img, (velocidade+10, 60))
-                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
-                        estado = 3
-                elif velocidade >= 260 and velocidade <= 460:#___segunda área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
-                        screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("segunda área")
-                elif velocidade >= -40 and velocidade <= 180:#___primeira área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
-                        screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("primeira área")
-        elif local == 6:#_cozinha - dentro do fogão
-            if fogao_img == fogaoAberto_img:
-                screen.blit(perdido, (60,280))
-                if velocidade >= -40 and velocidade <= 180:
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
-                        screen.blit(exclamacao_img, (velocidade+10, 60))
-                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
-                        estado = 3
-                elif velocidade >= 260 and velocidade <= 460:#___segunda área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
-                        screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("segunda área")
-                elif velocidade >= 490 and velocidade <= 680:#___terceira área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
-                        screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("terceira área")
     screen.blit(geladeira_img, (500,35))
     screen.blit(pia_img,(270,150)) 
     screen.blit(janela_img,(250,60))
     screen.blit(cortina_img,(243,30))
     screen.blit(fogao_img,(40,110))
-    return estado
-def sala(estado):#___________________________________________Ambientes
-    print(f"imagem: {perdido}, local:{local}, fase:{fase}, velocidade{velocidade}")
-    b, joca = 0, pygame.key.get_pressed()
-    if estado > 1:
-        rolado = pygame.transform.flip(perdido, False, True)
-        if local <= 3 : #_________________________local easy
-            if local == 1:#___sala - atrás da planta
-                screen.blit(perdido, (590,120))
-                if velocidade >= 510 and velocidade <= 720:
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+    biloca = pygame.key.get_pressed()
+    if local == 2:#_cozinha - Dentro da pia     ________________local easy
+        screen.blit(perdido, (270,150))
+        if velocidade >= 260 and velocidade <= 460:
+            if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
+                screen.blit(exclamacao_img, (velocidade+10, 60))
+            elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]: 
+                estado = 3
+        elif velocidade >= 490 and velocidade <= 680:#___terceira área
+                if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
+                    screen.blit(interrogacao_img, (velocidade+10, 60))
+                elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]:
+                        mentos = 1
+        elif velocidade >= -40 and velocidade <= 180:#___primeira área
+                if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
+                    screen.blit(interrogacao_img, (velocidade+10, 60))
+                elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]:
+                        mentos = 1
+    elif local == 5 or local == 6 :#___________local hard
+        if local == 5:#_cozinha - dentro da geladeira
+            if geladeira_img == geladeiraAberta_img:
+                screen.blit(perdido, (550,100))
+                if velocidade >= 490 and velocidade <= 680:
+                    if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
                         screen.blit(exclamacao_img, (velocidade+10, 60))
-                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                    elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]: 
                         estado = 3
-                elif velocidade >= 270 and velocidade <= 420:#___segunda área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                elif velocidade >= 260 and velocidade <= 460:#___segunda área
+                    if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
                         screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("segunda área")
-                elif velocidade >= -40 and velocidade <= 260:#___primeira área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                    elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]:
+                        mentos = 1
+                elif velocidade >= -40 and velocidade <= 180:#___primeira área
+                    if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
                         screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("primeira área")
-            elif local == 3:#_sala - encostado no sofá
-                screen.blit(perdido, (260, 140))
-                if velocidade >= -40 and velocidade <= 260:
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                    elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]:
+                        mentos = 1
+        elif local == 6:#_cozinha - dentro do fogão
+            if fogao_img == fogaoAberto_img:
+                screen.blit(perdido, (60,280))
+                if velocidade >= -40 and velocidade <= 180:
+                    if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
                         screen.blit(exclamacao_img, (velocidade+10, 60))
-                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                    elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]: 
                         estado = 3
-                elif velocidade >= 270 and velocidade <= 420:#___segunda área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                elif velocidade >= 260 and velocidade <= 460:#___segunda área
+                    if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
                         screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("segunda área")
-                elif velocidade >= 510 and velocidade <= 720:#___terceira área
-                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                    elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]:
+                        mentos = 1
+                elif velocidade >= 490 and velocidade <= 680:#___terceira área
+                    if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
                         screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("terceira área")
-        elif local >= 4 :#_________________________local hard
-            if local == 4:#___sala - embaixo do gato
+                    elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]:
+                        mentos = 1
+    else:#___________________quando o objeto estiver em outro ambiente
+        if velocidade >= -40 and velocidade <= 180:#___primeira área
+            if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
+                screen.blit(interrogacao_img, (velocidade+10, 60))
+            elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]:
+                mentos = 1
+        elif velocidade >= 260 and velocidade <= 460:#___segunda área
+            if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
+                screen.blit(interrogacao_img, (velocidade+10, 60))
+            elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]:
+                mentos = 1
+        elif velocidade >= 490 and velocidade <= 680:#___terceira área
+            if biloca[pygame.K_UP] and not biloca[pygame.K_DOWN]:
+                screen.blit(interrogacao_img, (velocidade+10, 60))
+            elif biloca[pygame.K_UP] and biloca[pygame.K_DOWN]:
+                    mentos = 1
+    if biloca[pygame.K_RIGHT] or biloca[pygame.K_LEFT]:
+        if not biloca[pygame.K_UP] or not biloca[pygame.K_DOWN]:
+            mentos = 0
+            select = fala_cozinha[random.randint(0,3)]
+    if mentos == 1:
+        screen.blit(perso_filho, (50, 320))
+        screen.blit(select, (150,320))
+    return estado, mentos, select
+def sala(estado, elementos, seletiva):#___________________________________________Ambientes
+    print(f"local:{local}, fase:{fase}, velocidade{velocidade}")
+    b = 0
+    screen.blit(sofa_img,(270,130))
+    screen.blit(planta_img,(600, 100))
+    screen.blit(gato_img,(360, 198 - b))
+    screen.blit(candelabro_img,(320, -35))
+    screen.blit(porta_img,(25, 15))
+    if estado == 2:
+        joca = pygame.key.get_pressed()
+        if estado > 1:
+            rolado = pygame.transform.flip(perdido, False, True)
+            if local == 1 or local ==3 : #_________________________local easy
+                if local == 1:#___sala - atrás da planta
+                    screen.blit(perdido, (590,120))
+                    if velocidade >= 510 and velocidade <= 720:
+                        if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                            screen.blit(exclamacao_img, (velocidade+10, 60))
+                        elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                            estado = 3
+                    elif velocidade >= 270 and velocidade <= 420:#___segunda área
+                        if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                            screen.blit(interrogacao_img, (velocidade+10, 60))
+                        elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                            elementos = 1
+                    elif velocidade >= 160 and velocidade <= 260:#___primeira área
+                        if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                            screen.blit(interrogacao_img, (velocidade+10, 60))
+                        elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                            elementos = 1
+                elif local == 3:#_sala - encostado no sofá
+                    screen.blit(perdido, (260, 140))
+                    if velocidade >= 160 and velocidade <= 260:
+                        if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                            screen.blit(exclamacao_img, (velocidade+10, 60))
+                        elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
+                            estado = 3
+                    elif velocidade >= 270 and velocidade <= 420:#___segunda área
+                        if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                            screen.blit(interrogacao_img, (velocidade+10, 60))
+                        elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                            elementos = 1
+                    elif velocidade >= 510 and velocidade <= 720:#___terceira área
+                        if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                            screen.blit(interrogacao_img, (velocidade+10, 60))
+                        elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                            elementos = 1
+            #_________________________local hard
+            elif local == 4:#___sala - embaixo do gato
                 screen.blit(rolado, (360,200))
                 b = 24
                 if velocidade >= 270 and velocidade <= 420:
@@ -140,20 +182,40 @@ def sala(estado):#___________________________________________Ambientes
                         screen.blit(exclamacao_img, (velocidade+10, 60))
                     elif joca[pygame.K_UP] and joca[pygame.K_DOWN]: 
                         estado = 3
-                elif velocidade >= -40 and velocidade <= 260:#___primeira área
+                elif velocidade >= 160 and velocidade <= 260:#___primeira área
                     if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
                         screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("primeira área")
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                            elementos = 1
                 elif velocidade >= 510 and velocidade <= 720:#___terceira área
                     if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
                         screen.blit(interrogacao_img, (velocidade+10, 60))
-                        print("terceira área")
-    screen.blit(sofa_img,(270,130))
-    screen.blit(planta_img,(600, 100))
-    screen.blit(gato_img,(360, 198 - b))
-    screen.blit(porta_img,(25, 15))
-    screen.blit(candelabro_img,(320, -35))
-    return estado
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                            elementos = 1
+            else:#___________________quando o objeto estiver em outro ambiente
+                if velocidade >= 160 and velocidade <= 260:#___primeira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                            elementos = 1
+                elif velocidade >= 270 and velocidade <= 420:#___segunda área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                            elementos = 1
+                elif velocidade >= 510 and velocidade <= 720:#___terceira área
+                    if joca[pygame.K_UP] and not joca[pygame.K_DOWN]:
+                        screen.blit(interrogacao_img, (velocidade+10, 60))
+                    elif joca[pygame.K_UP] and joca[pygame.K_DOWN]:
+                            elementos = 1
+        if joca[pygame.K_RIGHT] or joca[pygame.K_LEFT]:
+            if not joca[pygame.K_UP] or not joca[pygame.K_DOWN]:
+                elementos = 0
+                seletiva = fala_sala[random.randint(0,3)]
+        if elementos == 1:
+            screen.blit(perso_filho, (50, 320))
+            screen.blit(seletiva, (150,320))
+    return estado, elementos, seletiva
 def movimentoDeMainha(b):
     b += 1
     if b % 3 == 0:#_____________Movimento de mainha
@@ -223,13 +285,14 @@ def andarilho(veloci, ambiene, a):
 estado: big-bang = 0, prelúdio = 1, procura = 2, fim bom = 3, fim triste = -3 #___________Variáveis
 fase: fácil = 1, difícil = 3      |     sentido: direita = 22, esquerda = 13
 ambiente: sala= 0, cozinha = 1    |     genero: menino = 0, menina = 1'''
-estado, fase, ambiente, genero, momento, b, a, velocidade, kalooi = 0, 0, 0, 5, 0, 0, 0, 350, 0
+estado, fase, ambiente, genero, momento, b, a, velocidade, mome = 0, 0, 0, 5, 0, 0, 0, 350, 0
 #local: 1= atrás da planta, 2= Dentro da pia, 3= Emcima da planta | 4= embaixo do gato, 5= dentro da geladeira, 6= dentro do fogão
 lugar = [1,2,3,4,5,6]
 #objetos: 0= guarda-chuva, 1= roupa do if, 2= celular, 3= chave
 objetos = [guardaChuva_img, roupa_img, celular_img, chave_img]
 
 while True:
+
     for event in pygame.event.get():#_____________________Leitura de eventos
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -239,10 +302,7 @@ while True:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if estado == 1:
                momento += 1
-            if estado == 2:
-                kalooi += 1
     screen.fill((216,191,216)) #__________Repintando a tela 
-
 
     if estado == 0: #____________________________________________Tela inicial
         screen.blit(t_exto, (208,120))
@@ -277,7 +337,7 @@ while True:
         screen.blit(chao, (0,250))
 
         if estado == 1:#__________________Puxada de orelha
-            estado = sala(estado)
+            estado, mome, seletor_sala = sala(estado, mome, seletor_sala)
             if momento == 1:#_______________________Trocas de falas
                 b = movimentoDeMainha(b)
                 screen.blit(personagem_parado, (350,151))
@@ -305,9 +365,9 @@ while True:
         if fase == 1 and estado > 1:#______Separação de fase
             if estado == 2:
                 if ambiente == 0:
-                    estado = sala(estado)
+                    estado,mome, seletor_sala = sala(estado, mome, seletor_sala)
                 if ambiente == 1:
-                    estado = cozinha(estado)
+                    estado,momento, seletor_cozinha = cozinha(estado,momento, seletor_cozinha)
                 velocidade, ambiente, a = andarilho(velocidade, ambiente, a)#função do movimento controlado
             elif estado == 3:
                 print("Parabens")
