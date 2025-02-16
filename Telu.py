@@ -372,12 +372,12 @@ while True:
             if escolha[pygame.K_DOWN] and not escolha[pygame.K_UP]:
                 momento, estado = 0, 1
             screen.blit(esquerda, (238,110))
-            screen.blit(direita, (496, 110))
+            screen.blit(direita, (498, 110))
             screen.blit(botao, (78,17))
             screen.blit(baixo, (700,300))
             screen.blit(osso, (447,160))
             screen.blit(mamao, (187,155))
-            screen.blit(te_xto, (246,100))
+            screen.blit(te_xto, (262,100))
         elif momento == 2: #personagem e futuramente o nome - customizar
             screen.blit(botao, (78,17))
             screen.blit(t_exto, (266,100))
