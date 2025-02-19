@@ -5,19 +5,22 @@ import random
 pygame.init() #___________inicialização do programa
 
 tipográfico, mouse_x, mouse_y, screen, clock = pygame.font.Font(None, 24), 0, 0, pygame.display.set_mode((800, 400)), pygame.time.Clock()
-p_rogram,pr_ogram, pro_gram = tipográfico.render(f"Iniciar",True, (28,28,28)), tipográfico.render(f"Customizar", True, (28,28,28)), tipográfico.render(f"Tutorial", True, (28,28,28))
+t_utorial, tu_torial, tut_orial, tuto_rial, tutor_ial, tutori_al, tutoria_l = tipográfico.render(f"Frase aleatória acionada com:",True, (28,28,28)), tipográfico.render(f"Desativa com:",True, (28,28,28)) , tipográfico.render(f"Local do objeto perdido. Pegar com:",True, (28,28,28)), tipográfico.render(f"Clique básico do mouse",True, (28,28,28)), tipográfico.render(f"Alguns objetos podem ter interação",True, (28,28,28)), tipográfico.render(f"na fase É Osso",True, (28,28,28)), tipográfico.render(f"Use para correr:",True, (28,28,28))
+p_rogram,pr_ogram, pro_gram, prog_ram, progr_am = tipográfico.render(f"Iniciar",True, (28,28,28)), tipográfico.render(f"Customizar", True, (28,28,28)), tipográfico.render(f"Tutorial", True, (28,28,28)), tipográfico.render("Selecionar", True, (28,28,28)), tipográfico.render("Sair", True, (28,28,28))
 t_exto, te_xto, tex_to, text_o, perso_mainha= tipográfico.render(f"Deseja iniciar com qual personagem?", True, (28,28,28)), tipográfico.render(f"Qual nível de dificuldade deseja jogar?", True, (28,28,28)), tipográfico.render(f"Mamão com açucar", True, (28,28,28)), tipográfico.render(f"É osso", True, (28,28,28)), tipográfico.render(f"Mainha:", True, (28,28,28))
 f_rase, fr_ase, fra_se = tipográfico.render(f"Eu achei, mainha!", True, (28,28,28)), tipográfico.render(f"Ainda bem que não demorou, Filho, obrigada", True, (28,28,28)), tipográfico.render(f"Ainda bem que não demorou, Filha, obrigada", True, (28,28,28))
 s_ala, sa_la, sal_a, sala_ = tipográfico.render(f"Já esqueci o que eu deveria procurar", True, (28,28,28)), tipográfico.render(f"Gatinho fofo", True, (28,28,28)), tipográfico.render(f"Aquela planta é mais guerreira que cacto", True, (28,28,28)), tipográfico.render(f"Devo me apressar", True, (28,28,28)),
 c_ozinha, co_zinha, coz_inha, cozi_nha = tipográfico.render(f"Aqui é ventilado", True, (28,28,28)), tipográfico.render(f"Será que está na geladeira?", True, (28,28,28)), tipográfico.render(f"Será que está no fogão?", True, (28,28,28)), tipográfico.render(f"Mainha está me esperando", True, (28,28,28))
 p_uxada1, p_uxada2, pu_xada, pux_ada, perso_filho, puxa_da = tipográfico.render(f"Ariel, o que será de você quando eu não estiver", True, (28,28,28)), tipográfico.render(f"mais na Terra para achar os seus pertences?", True, (28,28,28)), tipográfico.render(f"Vá novamente procurar essa geringonça, e olhe lá....", True, (28,28,28)), tipográfico.render(f"Se eu for lá e achar, já sabe. Vou te dar alguns segundos.", True, (28,28,28)), tipográfico.render(f"Ariel:", True, (28,28,28)), tipográfico.render(f"Relaxa, coroa, eu vou achar sim.", True, (28,28,28))
-chao, fora, quintal, véu= pygame.Surface([800, 200]), pygame.Surface([230, 100]), pygame.Surface([120, 193]), pygame.Surface([600, 350])
+chao, fora, quintal= pygame.Surface([800, 200]), pygame.Surface([230, 100]), pygame.Surface([120, 193])
 fala_sala, fala_cozinha = [s_ala, sa_la, sal_a, sala_], [c_ozinha, co_zinha, coz_inha, cozi_nha]
 #_____________________________________Imagens e conversões
-moldura, titulo, controle, osso, mamao = pygame.image.load('imagens/moldura.png').convert_alpha(), pygame.image.load('imagens/Titulo init.png').convert_alpha(), pygame.image.load('imagens/controle.png').convert_alpha(), pygame.image.load('imagens/osso.png').convert_alpha(), pygame.image.load('imagens/mamaoComAcucar.png')
+cora1, cora2, cora3, cora4, cora5 = pygame.image.load('imagens/cora1.png').convert_alpha(), pygame.image.load('imagens/cora2.png').convert_alpha(), pygame.image.load('imagens/cora3.png').convert_alpha(), pygame.image.load('imagens/cora4.png').convert_alpha(), pygame.image.load('imagens/cora5.png').convert_alpha()
+cora1, cora2, cora3, cora4, cora5 = pygame.transform.scale(cora1, (300,300)), pygame.transform.scale(cora2, (300,300)), pygame.transform.scale(cora3, (300,300)), pygame.transform.scale(cora4, (300,300)), pygame.transform.scale(cora5, (300,300))
+moldura, titulo, controle, osso, mamao = pygame.image.load('imagens/moldura.png').convert_alpha(), pygame.image.load('imagens/Titulo init.png').convert_alpha(), pygame.image.load('imagens/controle.png').convert_alpha(), pygame.image.load('imagens/osso.png').convert_alpha(), pygame.image.load('imagens/mamaoComAcucar.png').convert_alpha()
 moldura, titulo, controle, osso, mamao = pygame.transform.scale(moldura, (300,300)), pygame.transform.scale(titulo, (350,250)), pygame.transform.scale(controle, (100,100)), pygame.transform.scale(osso, (200,200)), pygame.transform.scale(mamao, (200,200))
-parada_img, parado_img, inaAndando_img, inoAndando_img, menina_img, menino_img, botaoSelect, botao, ponteiro, ponteir, ponteirozin, ponteirinho = pygame.image.load('imagens/meninaParada.png').convert_alpha(), pygame.image.load('imagens/meninoParado.png').convert_alpha(), pygame.image.load('imagens/meninaAndando.png').convert_alpha(), pygame.image.load('imagens/meninoAndando.png').convert_alpha(), pygame.image.load('imagens/menina dorço.png').convert_alpha(), pygame.image.load('imagens/menino dorço.png').convert_alpha(), pygame.image.load('imagens/caixaSelecionada.png').convert_alpha(), pygame.image.load('imagens/caixa.png').convert_alpha(), pygame.image.load('imagens/setinha.png').convert_alpha(), pygame.image.load('imagens/lindona.png').convert_alpha(), pygame.image.load('imagens/setinha.png').convert_alpha(), pygame.image.load('imagens/lindona.png').convert_alpha()
-parada_img, parado_img, inaAndando_img, inoAndando_img, menina_img, menino_img, botaoSelect, botao, ponteiro, ponteir, ponteirozin, ponteirinho = pygame.transform.scale(parada_img, (150,200)), pygame.transform.scale(parado_img, (120,190)), pygame.transform.scale(inaAndando_img, (200,200)), pygame.transform.scale(inoAndando_img, (160, 160)), pygame.transform.scale(menina_img,(200,200)), pygame.transform.scale(menino_img, (200,200)), pygame.transform.scale(botaoSelect, (650,200)), pygame.transform.scale(botao, (650,200)), pygame.transform.scale(ponteiro,(100,100)), pygame.transform.scale(ponteir,(100,100)), pygame.transform.scale(ponteirozin, (90,90)), pygame.transform.scale(ponteirinho,(90,90))
+parada_img, parado_img, inaAndando_img, inoAndando_img, menina_img, menino_img, botao, ponteiro, ponteir, ponteirozin, ponteirinho = pygame.image.load('imagens/meninaParada.png').convert_alpha(), pygame.image.load('imagens/meninoParado.png').convert_alpha(), pygame.image.load('imagens/meninaAndando.png').convert_alpha(), pygame.image.load('imagens/meninoAndando.png').convert_alpha(), pygame.image.load('imagens/menina dorço.png').convert_alpha(), pygame.image.load('imagens/menino dorço.png').convert_alpha(), pygame.image.load('imagens/caixa.png').convert_alpha(), pygame.image.load('imagens/setinha.png').convert_alpha(), pygame.image.load('imagens/lindona.png').convert_alpha(), pygame.image.load('imagens/setinha.png').convert_alpha(), pygame.image.load('imagens/lindona.png').convert_alpha()
+parada_img, parado_img, inaAndando_img, inoAndando_img, menina_img, menino_img, botao, ponteiro, ponteir, ponteirozin, ponteirinho = pygame.transform.scale(parada_img, (150,200)), pygame.transform.scale(parado_img, (120,190)), pygame.transform.scale(inaAndando_img, (200,200)), pygame.transform.scale(inoAndando_img, (160, 160)), pygame.transform.scale(menina_img,(200,200)), pygame.transform.scale(menino_img, (200,200)), pygame.transform.scale(botao, (350,200)), pygame.transform.scale(ponteiro,(100,100)), pygame.transform.scale(ponteir,(100,100)), pygame.transform.scale(ponteirozin, (90,90)), pygame.transform.scale(ponteirinho,(90,90))
 sofa_img, planta_img, gatoMimindo_img, portaFechada_img, candelabro_img, gatoAtento_img, portAberta_img, mainha_img = pygame.image.load('imagens/sofá.png').convert_alpha(),pygame.image.load('imagens/planta.png').convert_alpha(),pygame.image.load('imagens/gatoDormindo.png').convert_alpha(), pygame.image.load('imagens/portaFechada.png').convert_alpha(), pygame.image.load('imagens/candelabro.png').convert_alpha(), pygame.image.load('imagens/gatoAtento.png').convert_alpha(), pygame.image.load('imagens/portaAberta.png').convert_alpha(), pygame.image.load('imagens/mainha.png').convert_alpha()
 sofa_img, planta_img, gatoMimindo_img, portaFechada_img, candelabro_img, gatoAtento_img, portAberta_img, mainha_img = pygame.transform.scale(sofa_img, (400, 200)), pygame.transform.scale(planta_img, (150, 200)), pygame.transform.scale(gatoMimindo_img, (90, 50)), pygame.transform.scale(portaFechada_img, (300, 300)), pygame.transform.scale(candelabro_img, (180, 150)), pygame.transform.scale(gatoAtento_img, (87, 47)), pygame.transform.scale(portAberta_img, (180,150)), pygame.transform.scale(mainha_img, (120,140))
 pia_img, geladeiraFechada_img, geladeiraAberta_img, fogaoFechado_img, fogaoAberto_img, janela_img, cortinaAberta_img, cortinaFechada_img = pygame.image.load('imagens/pia.png').convert_alpha(), pygame.image.load('imagens/geladeiraFechada.png').convert_alpha(), pygame.image.load('imagens/geladeiraAberta.png').convert_alpha(), pygame.image.load('imagens/fogãoFechado.png').convert_alpha(), pygame.image.load('imagens/fogãoAberto.png').convert_alpha(), pygame.image.load('imagens/janela.png').convert_alpha(), pygame.image.load('imagens/cortinaAberta.png').convert_alpha(), pygame.image.load('imagens/cortinaFechada.png').convert_alpha()
@@ -42,7 +45,6 @@ roupa_img = roupaFechada_img
 personagem_andando, personagem_parado = inoAndando_img, parado_img
 seletor_cozinha, seletor_sala = fala_cozinha[random.randint(0,3)], fala_sala[random.randint(0,3)]
 #_______________________________________Pintura
-véu.fill((222,184,135))
 chao.fill((240,230,140)) 
 fora.fill((255,255,255))
 quintal.fill((255,255,255))
@@ -296,7 +298,7 @@ def planoDeFundo1(chinela):
     screen.blit(chao,(0,250))
     screen.blit(sofa_img,(270,130))
     screen.blit(planta_img,(600, 100))
-    screen.blit(gato_img,(360, 198 - b))
+    screen.blit(gato_img,(360, 198))
     screen.blit(porta_img,(25, 15))
     screen.blit(pygame.transform.flip(inaAndando_img, True, False), (chinela + 150, 151))
     screen.blit(chinelo_img, (chinela, 131))
@@ -309,12 +311,27 @@ def planoDeFundo2():
     screen.blit(chao,(0,250))
     screen.blit(planta_img,(600, 100))
     screen.blit(porta_img,(25, 15))
+def paixao(z):
+    z+= 1
+    if z <= 7:
+        screen.blit(cora1, (120,-10))
+    elif z >= 8 and z <= 17:
+        screen.blit(cora2, (120,-10))
+    elif z >= 18 and z <= 27:
+        screen.blit(cora3, (120,-10))
+    elif z >= 28 and z <= 37:
+        screen.blit(cora4, (120,-10))
+    elif z >= 38 and z <= 47:
+        screen.blit(cora5, (120,-10))
+    else:
+        z = 0
+    return z
 
 '''Momento= passagem do tempo em uma cena | velocidade= movimento do personagem na tela  | tempo= contagem regressiva para o estresse total de Mainha
 estado: big-bang = 0, prelúdio = 1, procura = 2, fim bom = 3, fim triste = -3 #___________Variáveis
 fase: fácil = 1, difícil = 3      |     sentido: direita = 22, esquerda = 13
 ambiente: sala= 0, cozinha = 1    |     genero: menino = 0, menina = 1'''
-estado, fase, ambiente, genero, momento, b, a, velocidade, mome, tempo, x = 0, 0, 0, 0, 0, 0, 0, 350, 0, 350, -200
+estado, fase, ambiente, genero, momento, b, a, velocidade, mome, tempo, x, z, veloc = 0, 0, 0, 0, 0, 0, 0, 350, 0, 350, -200, 0, 0
 #local: 1= atrás da planta, 2= Dentro da pia, 3= Emcima da planta | 4= embaixo do gato, 5= dentro da geladeira, 6= dentro do fogão
 lugar = [1,2,3,4,5,6]
 #objetos: 0= guarda-chuva, 1= roupa do if, 2= celular, 3= chave
@@ -341,13 +358,13 @@ while True:
             planoDeFundo2()
         if momento == 0: #tela inicial inicial
             screen.blit(titulo, (245, 0))
-            screen.blit(botao, (80, 94))
+            screen.blit(botao, (245, 94))
             screen.blit(esquerda, (100,133))
             screen.blit(p_rogram, (385, 175))#texto
-            screen.blit(botao, (80, 164))
+            screen.blit(botao, (245, 164))
             screen.blit(cima, (105,200))
             screen.blit(pr_ogram, (368, 245))#texto
-            screen.blit(botao, (80, 230))
+            screen.blit(botao, (245, 230))
             screen.blit(direita, (100, 270))
             screen.blit(pro_gram, (380, 310))#texto
             if gologo[pygame.K_UP] and not gologo[pygame.K_RIGHT] and not gologo[pygame.K_LEFT]:#_____Cima
@@ -373,14 +390,10 @@ while True:
                 momento, estado = 0, 1
             screen.blit(esquerda, (238,110))
             screen.blit(direita, (498, 110))
-            screen.blit(botao, (78,17))
             screen.blit(baixo, (700,300))
             screen.blit(osso, (447,160))
             screen.blit(mamao, (187,155))
-            screen.blit(te_xto, (262,100))
         elif momento == 2: #personagem e futuramente o nome - customizar
-            screen.blit(botao, (78,17))
-            screen.blit(t_exto, (266,100))
             screen.blit(menina_img, (190,150))
             screen.blit(menino_img, (450,153))
             screen.blit(baixo, (700,-10))
@@ -400,13 +413,24 @@ while True:
             if not escolha[pygame.K_UP] and escolha[pygame.K_DOWN]:
                 momento = 0
         elif momento == 3: #Tutorial dos botões e jogabilidade (imagens prontas ampliadas) - tutorial
-            print("hello word")
             escolha = pygame.key.get_pressed()
             screen.blit(baixo, (700,-10))
             if escolha[pygame.K_DOWN] and not escolha[pygame.K_UP]:
                 momento = 0  
+            screen.blit(interrogacao_img, (10, 50))
+            screen.blit(t_utorial, (100, 75))#texto
+            screen.blit(tu_torial, (100, 105))#texto
+            
+            screen.blit(exclamacao_img, (10, 150))
+            screen.blit(tut_orial, (100, 175))#texto
+
+            screen.blit(controle, (10, 180))
+            screen.blit(tuto_rial, (130, 205))#texto
+
+            
     if estado == 1:#__________________Puxada de orelha  ___________________________________________________________Jogo
             screen.blit(chao,(0,250))
+            screen.blit(controle, (670,285))
             estado, mome, seletor_sala = sala(estado, mome, seletor_sala)
             if momento == 1:#_______________________Trocas de falas
                 b = movimentoDeMainha(b)
@@ -447,6 +471,7 @@ while True:
     elif estado == 3:#_________________Final feliz
             screen.blit(chao,(0,250))
             estado, mome, seletor_sala = sala(estado, mome, seletor_sala)
+            screen.blit(controle, (680,280))
             gologodo = pygame.key.get_pressed()
             if momento == 0:#__segurando item
                 screen.blit(mainha_img, (200,180))
@@ -454,18 +479,26 @@ while True:
                 a = movimentoDePersonagem(a)
                 screen.blit(f_rase,(150,320))
             elif  momento == 1:#__entregar 
+                veloc += 3
+                print(veloc)
+                if (370 - veloc) > 270:
+                    screen.blit(perdido, ((370-veloc), 151))
+                    laraya = (370-veloc)
+                else:
+                    screen.blit(perdido, (laraya, 151))
                 screen.blit(mainha_img,(200, 180))
                 screen.blit(personagem_parado, (350, 151))
             elif  momento == 2:#__corações
+                z = paixao(z)
                 screen.blit(personagem_parado, (350, 151))
-                screen.blit(mainha_img, (200, 180))
+                b = movimentoDeMainha(b)
                 screen.blit(perso_mainha, (50, 320))
                 if genero == 0:
                     screen.blit(fr_ase,(150,320))
                 else:
                     screen.blit(fra_se,(150,320))
             else:
-                momento, estado = 0, 0
+                momento, estado, veloc = 0, 0, 0
     elif estado == 4:#_____________Final triste
             screen.blit(chao,(0,250))
             x += 10
