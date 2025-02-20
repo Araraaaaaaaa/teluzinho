@@ -5,18 +5,17 @@ import random
 pygame.init() #___________inicialização do programa
 
 tipográfico, mouse_x, mouse_y, screen, clock = pygame.font.Font(None, 24), 0, 0, pygame.display.set_mode((800, 400)), pygame.time.Clock()
-t_utorial, tu_torial, tut_orial, tuto_rial, tutor_ial, tutori_al, tutoria_l, tutorial_ = tipográfico.render(f"mostra",True, (28,28,28)), tipográfico.render(f"ou",True, (28,28,28)) , tipográfico.render(f"faz correr",True, (28,28,28)), tipográfico.render(f"Clique básico do mouse",True, (28,28,28)), tipográfico.render(f"movimenta o personagem",True, (28,28,28)), tipográfico.render(f"abre a geladeira e o fogão",True, (28,28,28)), tipográfico.render(f"fecha a geladeira e o fogão",True, (28,28,28)), tipográfico.render(f"é para pegar o objeto perdido",True, (28,28,28))
-p_rogram,pr_ogram, pro_gram, prog_ram, progr_am = tipográfico.render(f"Iniciar",True, (28,28,28)), tipográfico.render(f"Customizar", True, (28,28,28)), tipográfico.render(f"Tutorial", True, (28,28,28)), tipográfico.render("Confirmar", True, (28,28,28)), tipográfico.render("Sair", True, (28,28,28))
-t_exto, te_xto, tex_to, text_o, perso_mainha= tipográfico.render(f"Deseja iniciar com qual personagem?", True, (28,28,28)), tipográfico.render(f"Qual nível de dificuldade deseja jogar?", True, (28,28,28)), tipográfico.render(f"Mamão com açucar", True, (28,28,28)), tipográfico.render(f"É osso", True, (28,28,28)), tipográfico.render(f"Mainha:", True, (28,28,28))
+t_utorial, tu_torial, tut_orial, tuto_rial, tutor_ial, tutori_al, tutoria_l, tutorial_ = tipográfico.render(f"mostra",True, (28,28,28)), tipográfico.render(f"ou",True, (28,28,28)) , tipográfico.render(f"Faz correr",True, (28,28,28)), tipográfico.render(f"Clique básico do mouse",True, (28,28,28)), tipográfico.render(f"Movimenta o personagem",True, (28,28,28)), tipográfico.render(f"Abre a geladeira e o fogão",True, (28,28,28)), tipográfico.render(f"Fecha a geladeira e o fogão",True, (28,28,28)), tipográfico.render(f"Pegar o objeto perdido",True, (28,28,28))
+p_rogram,pr_ogram, pro_gram, prog_ram, progr_am, perso_mainha = tipográfico.render(f"Iniciar",True, (28,28,28)), tipográfico.render(f"Customizar", True, (28,28,28)), tipográfico.render(f"Tutorial", True, (28,28,28)), tipográfico.render("Confirmar", True, (28,28,28)), tipográfico.render("Sair", True, (28,28,28)), tipográfico.render(f"Mainha:", True, (28,28,28))
 f_rase, fr_ase, fra_se = tipográfico.render(f"Eu achei, mainha!", True, (28,28,28)), tipográfico.render(f"Ainda bem que não demorou, Filho, obrigada", True, (28,28,28)), tipográfico.render(f"Ainda bem que não demorou, Filha, obrigada", True, (28,28,28))
 s_ala, sa_la, sal_a, sala_ = tipográfico.render(f"Já esqueci o que eu deveria procurar", True, (28,28,28)), tipográfico.render(f"Gatinho fofo", True, (28,28,28)), tipográfico.render(f"Aquela planta é mais guerreira que cacto", True, (28,28,28)), tipográfico.render(f"Devo me apressar", True, (28,28,28)),
 c_ozinha, co_zinha, coz_inha, cozi_nha = tipográfico.render(f"Aqui é ventilado", True, (28,28,28)), tipográfico.render(f"Será que está na geladeira?", True, (28,28,28)), tipográfico.render(f"Será que está no fogão?", True, (28,28,28)), tipográfico.render(f"Mainha está me esperando", True, (28,28,28))
-p_uxada1, p_uxada2, pu_xada, pux_ada, perso_filho, puxa_da = tipográfico.render(f"Ariel, o que será de você quando eu não estiver", True, (28,28,28)), tipográfico.render(f"mais na Terra para achar os seus pertences?", True, (28,28,28)), tipográfico.render(f"Vá novamente procurar essa geringonça, e olhe lá....", True, (28,28,28)), tipográfico.render(f"Se eu for lá e achar, já sabe. Vou te dar alguns segundos.", True, (28,28,28)), tipográfico.render(f"Ariel:", True, (28,28,28)), tipográfico.render(f"Relaxa, coroa, eu vou achar sim.", True, (28,28,28))
+p_uxada1, p_uxada2, pu_xada, pux_ada, perso_filho, puxa_da = tipográfico.render(f"Ariel, o que será de você quando eu não estiver", True, (28,28,28)), tipográfico.render(f"Mais na Terra para achar os seus pertences?", True, (28,28,28)), tipográfico.render(f"Vá novamente procurar essa geringonça, e olhe lá....", True, (28,28,28)), tipográfico.render(f"Se eu for lá e achar, já sabe. Vou te dar alguns segundos.", True, (28,28,28)), tipográfico.render(f"Ariel:", True, (28,28,28)), tipográfico.render(f"Relaxa, coroa, eu vou achar sim.", True, (28,28,28))
 chao, fora, quintal= pygame.Surface([800, 200]), pygame.Surface([230, 100]), pygame.Surface([120, 193])
 fala_sala, fala_cozinha = [s_ala, sa_la, sal_a, sala_], [c_ozinha, co_zinha, coz_inha, cozi_nha]
 #_____________________________________Imagens e conversões
-cora1, cora2, cora3, cora4, cora5 = pygame.image.load('imagens/cora1.png').convert_alpha(), pygame.image.load('imagens/cora2.png').convert_alpha(), pygame.image.load('imagens/cora3.png').convert_alpha(), pygame.image.load('imagens/cora4.png').convert_alpha(), pygame.image.load('imagens/cora5.png').convert_alpha()
-cora1, cora2, cora3, cora4, cora5 = pygame.transform.scale(cora1, (300,300)), pygame.transform.scale(cora2, (300,300)), pygame.transform.scale(cora3, (300,300)), pygame.transform.scale(cora4, (300,300)), pygame.transform.scale(cora5, (300,300))
+cora1, cora2, cora3, cora4, cora5, image0, image1, image2, image3 = pygame.image.load('imagens/cora1.png').convert_alpha(), pygame.image.load('imagens/cora2.png').convert_alpha(), pygame.image.load('imagens/cora3.png').convert_alpha(), pygame.image.load('imagens/cora4.png').convert_alpha(), pygame.image.load('imagens/cora5.png').convert_alpha(), pygame.image.load('imagens/image1.png').convert(), pygame.image.load('imagens/image2.png').convert(), pygame.image.load('imagens/image3.png').convert(), pygame.image.load('imagens/image4.png').convert() 
+cora1, cora2, cora3, cora4, cora5, image0, image1, image2, image3 = pygame.transform.scale(cora1, (300,300)), pygame.transform.scale(cora2, (300,300)), pygame.transform.scale(cora3, (300,300)), pygame.transform.scale(cora4, (300,300)), pygame.transform.scale(cora5, (300,300)), pygame.transform.scale(image0, (300,150)), pygame.transform.scale(image1, (300,200)), pygame.transform.scale(image2, (300,150)), pygame.transform.scale(image3, (300,200))
 moldura, titulo, controle, osso, mamao = pygame.image.load('imagens/moldura.png').convert_alpha(), pygame.image.load('imagens/Titulo init.png').convert_alpha(), pygame.image.load('imagens/controle.png').convert_alpha(), pygame.image.load('imagens/osso.png').convert_alpha(), pygame.image.load('imagens/mamaoComAcucar.png').convert_alpha()
 moldura, titulo, controle, osso, mamao = pygame.transform.scale(moldura, (300,300)), pygame.transform.scale(titulo, (350,250)), pygame.transform.scale(controle, (100,100)), pygame.transform.scale(osso, (200,200)), pygame.transform.scale(mamao, (200,200))
 parada_img, parado_img, inaAndando_img, inoAndando_img, menina_img, menino_img, botao, ponteiro, ponteir, ponteirozin, ponteirinho = pygame.image.load('imagens/meninaParada.png').convert_alpha(), pygame.image.load('imagens/meninoParado.png').convert_alpha(), pygame.image.load('imagens/meninaAndando.png').convert_alpha(), pygame.image.load('imagens/meninoAndando.png').convert_alpha(), pygame.image.load('imagens/menina dorço.png').convert_alpha(), pygame.image.load('imagens/menino dorço.png').convert_alpha(), pygame.image.load('imagens/caixa.png').convert_alpha(), pygame.image.load('imagens/setinha.png').convert_alpha(), pygame.image.load('imagens/lindona.png').convert_alpha(), pygame.image.load('imagens/setinha.png').convert_alpha(), pygame.image.load('imagens/lindona.png').convert_alpha()
@@ -415,7 +414,7 @@ lugar = [1,2,3,4,5,6]
 objetos = [guardaChuva_img, roupa_img, celular_img, chave_img]
 
 while True:
-    t_emporizador =  tipográfico.render(f"Fim da paciência: {tempo}", True, (28,28,28)) 
+    t_emporizador =  tipográfico.render(f"Paciência: {tempo}", True, (28,28,28)) 
     for event in pygame.event.get():#_____________________Leitura de eventos
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -445,7 +444,7 @@ while True:
         if fase != 3:
             tempo = 450
         else:
-            tempo = 200
+            tempo = 325
         if momento < 1:
             x = planoDeFundo1(x)
         elif momento == 2:
@@ -524,30 +523,38 @@ while True:
             else:
                 screen.blit(miniEu, (355,300))
             if mome == 0: #________primeira tela
-                screen.blit(cima, (200,200))
-                screen.blit(exclamacao_img, (200,200))
-                screen.blit(interrogacao_img, (200,200))
-                screen.blit(t_utorial, (100,100))#mostra
-                screen.blit(tu_torial, (100,100))#ou
+                screen.blit(image0, (50,130))
+                screen.blit(cima,(570,100))
+                screen.blit(baixo,(520, 105))
+                screen.blit(tutorial_, (480,98))#pegar objeto perdido
+                screen.blit(controle,(540, 215))
+                screen.blit(tuto_rial, (480,207))#toque do mouse
             elif mome == 1: #______segunda
-                screen.blit(baixo,(200,200))
-                screen.blit(esquerda,(200,200))
-                screen.blit(direita,(200,200))
-                screen.blit(tu_torial, (100,100))#ou
-                screen.blit(tut_orial, (100,100))#faz correr
+                screen.blit(image1, (50,80))
+                screen.blit(baixo,(500,100))
+                screen.blit(esquerda,(450, 105))
+                screen.blit(tu_torial, (574,150))#ou
+                screen.blit(direita,(620,102))
+                screen.blit(baixo,(580,100))
+                screen.blit(tut_orial, (548,98))#faz correr
+                screen.blit(esquerda,(450, 215))
+                screen.blit(tu_torial, (574,260))#ou
+                screen.blit(direita,(620,212))
+                screen.blit(tutor_ial, (480,207))#movimenta o personagem
             elif mome == 2:#________terceira
-                screen.blit(esquerda,(200,200))
-                screen.blit(direita,(200,200))
-                screen.blit(baixo,(200,200))
-                screen.blit(tuto_rial, (100,100))
-                screen.blit(tutori_al, (100,100))
-                screen.blit(tutor_ial, (100,100))
+                screen.blit(image2, (50, 130))
+                screen.blit(esquerda,(450, 105))
+                screen.blit(direita,(620,102))
+                screen.blit(tutori_al, (480,98))#abre a geladeira e o fogão
+                screen.blit(baixo,(540, 215))
+                screen.blit(tutoria_l, (480,207))#fecha a geladeira e o fogão
             else:#______________quarta
-                screen.blit(cima,(200,200))
-                screen.blit(baixo,(200,200))
-                screen.blit(controle,(200,200))
-                screen.blit(tutoria_l, (100,100))
-                screen.blit(tutorial_, (100,100))#pegar objeto perdido
+                screen.blit(image3, (50,80))
+                screen.blit(cima, (450, 105))
+                screen.blit(t_utorial, (540,150))#mostra
+                screen.blit(exclamacao_img, (665, 100))
+                screen.blit(tu_torial, (660,150))#ou
+                screen.blit(interrogacao_img, (580, 110))
             
     if estado == 1:#__________________Puxada de orelha  ___________________________________________________________Jogo
             screen.blit(chao,(0,250))
