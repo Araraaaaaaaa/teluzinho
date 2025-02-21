@@ -45,7 +45,7 @@ seletor_cozinha, seletor_sala = fala_cozinha[random.randint(0,3)], fala_sala[ran
 chao.fill((240,230,140)) 
 quintal.fill((255,255,255))
 def cozinha(estado,mentos, select, geladeira_img, fogao_img):
-    print(local)
+    # print(local)
     biloca = pygame.key.get_pressed()
     if velocidade >= 490 and velocidade <= 680: #_cozinha - abrir/fechar geladeira
         if geladeira_img == geladeiraFechada_img:
@@ -177,7 +177,7 @@ def cozinha(estado,mentos, select, geladeira_img, fogao_img):
     return estado, mentos, select, geladeira_img, fogao_img
 def sala(estado, elementos, seletiva, perdido, gato_img):#___________________________________________Ambientes
     b, joca = 0, pygame.key.get_pressed()
-    print(local)
+    # print(local)
     if joca[pygame.K_DOWN] and joca[pygame.K_LEFT]:#_____Movimento do gato
         if velocidade >= 100 and velocidade <= 500:
             gato_img = gatoAtento_img
